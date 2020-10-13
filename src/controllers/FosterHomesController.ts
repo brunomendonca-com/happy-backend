@@ -13,6 +13,16 @@ export default {
     return response.json(fosterHomes);
   },
 
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const fosterHomesRepository = getRepository(FosterHome);
+
+    const fosterHome = await fosterHomesRepository.findOneOrFail(id);
+
+    return response.json(fosterHome);
+  },
+
   async create(request: Request, response: Response) {
     const {
       name,
